@@ -3,6 +3,7 @@
 int
 main(void)
 {
-  printf ("This is a test");
-  return(0);
+ 	printf ("This is a test");
+ 	printf("Yeet");
+ 	return(0);
 }
