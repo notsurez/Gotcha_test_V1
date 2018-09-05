@@ -6,5 +6,6 @@ main(void)
  	printf ("This is a test");
  	printf("Yeet");
 	printf ("this is also a test");
+	printf ("yet another test");
  	return(0);
 }
