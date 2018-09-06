@@ -8,14 +8,24 @@ main(void)
     char answer;
     MainMenu();
     Game();
+    Info();
 }
 
 void MainMenu(){
     char answer;
     while(game_state == 1)
     {
-        printf("[//------Main Menu------//] \n\n");
-        printf("Enter the Game Y/N? \n: ");
+        //Title
+        printf("[//------Le Titre Du Jeu------//] \n\n");
+
+        //Menu Options
+        printf("Enter the Game [Y] \n");
+        printf("Exit the Game [N] \n");
+        printf("Info Page [I] \n");
+
+        //Response line
+        printf(": ");
+
         while(game_state == 1)
         {
             scanf(" %c", &answer);
@@ -28,9 +38,13 @@ void MainMenu(){
             {
               return(0);
             }
+            else if(answer == 'i')
+            {
+                game_state = 3;
+            }
             else
             {
-                printf("Please Enter y or n \n: ");
+                printf("Please Enter A Valid Character \n: ");
             }
         }
     } //End of while for main menu
@@ -39,6 +53,13 @@ void MainMenu(){
 void Game(){
     while(game_state == 2){
         printf("[//------Game------//]");
+        return(0);
+    }
+}
+
+void Info(){
+    while(game_state == 3){
+        printf("[//------Information------//]");
         return(0);
     }
 }
