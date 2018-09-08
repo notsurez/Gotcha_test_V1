@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+
 
 /*
     Title Card  = 0
@@ -6,7 +8,8 @@
     Info        = 2
 
 */
-int game_state = 0; //Variable that keeps track of the game state
+int game_state  = 0; //Variable that keeps track of the game state
+int quest_state = 0;
 
 int
 main(void)
@@ -17,6 +20,7 @@ main(void)
     Info();
     CharacterMenu();
     Quests();
+    GearMenu();
 }
 
 void TitleCard(){
@@ -90,16 +94,14 @@ void MainMenu(){
             }
             else if(answer = 'e')
             {
-                TitleCard();
                 game_state = 0;
-
             }
             else
             {
                 printf("Please Enter A Valid Character \n: ");
             }
         }
-    } //End of while for main menu
+    } ///End of while for main menu
 }
 
 void Info(){
@@ -116,9 +118,89 @@ void CharacterMenu(){
     }
 }
 
-void Quests(){
+void Quests(int i){
+    int id = i;
     while(game_state == 4){
-        printf("[//------Quests------//]");
+        FILE *fp; ///declares file pointer
+        fp = fopen("test.txt", "r"); ///
+        char buff[255];
+
+        FILE *charPointer;
+        charPointer = fopen("charactersOwned.txt", "r");
+
+
+
+        char answ[7];
+        char ok;
+        int party_size = 0;
+        char party[3][7];
+        int esc = 1;
+
+        while(party_size < 3)
+        {
+            while(!feof(charPointer))
+            {
+                fgets(buff, 255, charPointer);
+                printf("%s", buff );
+                fgets(buff, 255, charPointer);
+                printf("%s\n", buff );
+                fgets(buff, 255, charPointer);
+                fgets(buff, 255, charPointer);
+            }
+
+            printf("\nEnter the id of character to add: ");
+            scanf("%s", &answ);
+            printf("\n %s", answ);
+
+            while(strcmp(answ, buff) == 0)
+            {
+                fgets(buff, 255, charPointer);
+            }
+
+                if(strcmp(answ, buff) == 1)
+                {
+                    fgets(buff, 255, charPointer);
+                    fgets(buff, 255, charPointer);
+                    strcpy(party[party_size], buff);
+                    printf("%s", party[party_size]);
+                }
+            party_size = party_size + 1;
+        }
+        fclose(charPointer);
+
+        FILE *char_Pointer;
+        char_Pointer = fopen(party[0], "r");
+        char temp[36];
+        fgets(temp, 255, char_Pointer);
+        printf("%s\n", temp );
+
+
+
+        while(!feof(fp))
+        {
+            fgets(buff, 255, fp);
+
+            if(strcmp(buff, "text") == 1)
+            {
+                scanf("%c", &ok);
+                fgets(buff, 255, fp);
+                printf("%s\n", buff );
+                fgets(buff, 255, fp);
+            }
+        }
+
+
+
+
+/*
+        if(strcmp(buff, "text") == 1)
+        {
+            fgets(buff, 255, (FILE*)fp);
+            printf("2: %s\n", buff );
+
+        }
+        */
+        fclose(fp);
         return(0);
     }
 }
@@ -126,6 +208,13 @@ void Quests(){
 
 void Shop(){
     while(game_state == 5){
+        printf("[//------Shop------//]");
+        return(0);
+    }
+}
+
+void GearMenu(){
+    while(game_state == 6){
         printf("[//------Shop------//]");
         return(0);
     }
