@@ -136,6 +136,14 @@ void Quests(int i){
         char party[3][7];
         int esc = 1;
 
+        char char_1[10];
+        char char_2[10];
+        char char_3[10];
+
+        char dest[100];
+
+
+
         while(party_size < 3)
         {
             while(!feof(charPointer))
@@ -161,18 +169,37 @@ void Quests(int i){
                 {
                     fgets(buff, 255, charPointer);
                     fgets(buff, 255, charPointer);
-                    strcpy(party[party_size], buff);
-                    printf("%s", party[party_size]);
+                    switch(party_size)
+                    {
+                    case 0:
+                        memset(char_1, '\0', sizeof(char_1));
+                        strcpy(char_1, buff);
+                        puts(char_1);
+                        break;
+                    case 1:
+                        memset(char_2, '\0', sizeof(char_2));
+                        strcpy(char_2, buff);
+                        puts(char_2);
+                        break;
+                    case 2:
+                        memset(char_3, '\0', sizeof(char_3));
+                        strcpy(char_3, buff);
+                        puts(char_3);
+                        break;
+                    }
                 }
             party_size = party_size + 1;
         }
         fclose(charPointer);
 
+        printf("\n\nCharacter 1: %s \nCharacter 2: %s \nCharacter 3: %s\n", char_1, char_2, char_3);
+
         FILE *char_Pointer;
         char_Pointer = fopen(party[0], "r");
         char temp[36];
-        fgets(temp, 255, char_Pointer);
-        printf("%s\n", temp );
+        fgets(temp, 36, char_Pointer);
+        printf("%s\n", temp);
+        fclose(char_Pointer);
 
 
 
